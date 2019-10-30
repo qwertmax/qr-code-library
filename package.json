@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "qrcode": "^1.4.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
