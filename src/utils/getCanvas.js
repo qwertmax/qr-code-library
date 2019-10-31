@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   try {
     return document.createElement('canvas');
   } catch (e) {

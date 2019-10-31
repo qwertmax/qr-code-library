@@ -1,6 +1,6 @@
 const getCanvas = required('./getCanvas.js');
 
-module.exports = (width, height) => {
+export default (width, height) => {
   const canvas = getCanvas();
 
   canvas.width = width;

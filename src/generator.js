@@ -1,4 +1,4 @@
-const qrcode = require('qrcode');
+import { create } from 'qrcode';
 
 const defaultOpts = {};
 
@@ -7,7 +7,7 @@ const getBits = bitObject => Object.values(bitObject);
 
 const getQRCodeBitMatrix = (payload, opts = {}) => {
   const options = Object.assign({}, defaultOpts, opts);
-  const qrCodeStructure = qrcode.create(payload, options);
+  const qrCodeStructure = create(payload, options);
   const bitMatrix = {
     data: getBits(qrCodeStructure.modules.data),
     size: qrCodeStructure.modules.size
@@ -16,6 +16,6 @@ const getQRCodeBitMatrix = (payload, opts = {}) => {
   return bitMatrix;
 };
 
-module.exports = {
+export default {
   getQRCodeBitMatrix
 };

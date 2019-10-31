@@ -1,47 +1,45 @@
-const converters = require('./converters');
-const generator = require('./generator');
-const rerender = require('./rerender');
+import {
+  convertToUrl,
+  convertToText,
+  convertToVCard,
+  convertToEmail,
+  convertToSms
+} from './converters';
+import { getQRCodeBitMatrix } from './generator';
+import render from './render';
 
-const createQrCode = (payload, ...args) => {
-  const matrix = generator.getQRCodeBitMatrix(payload);
+export const createQrCode = (payload, ...args) => {
+  const matrix = getQRCodeBitMatrix(payload);
 
-  return rerender(matrix);
+  return render(matrix);
 };
 
-const createQrCodeFromUrl = (fields, ...args) => {
-  const payload = converters.convertToUrl(fields);
+export const createQrCodeFromUrl = (fields, ...args) => {
+  const payload = convertToUrl(fields);
 
   return createQrCode(payload, ...args);
 };
 
-const createQrCodeFromText = (fields, ...args) => {
-  const payload = converters.convertToText(fields);
+export const createQrCodeFromText = (fields, ...args) => {
+  const payload = convertToText(fields);
 
   return createQrCode(payload, ...args);
 };
 
-const createQrCodeFromVCard = (fields, ...args) => {
-  const payload = converters.convertToVCard(fields);
+export const createQrCodeFromVCard = (fields, ...args) => {
+  const payload = convertToVCard(fields);
 
   return createQrCode(payload, ...args);
 };
 
-const createQrCodeFromEmail = (fields, ...args) => {
-  const payload = converters.convertToEmail(fields);
+export const createQrCodeFromEmail = (fields, ...args) => {
+  const payload = convertToEmail(fields);
 
   return createQrCode(payload, ...args);
 };
 
-const createQrCodeFromSms = (fields, ...args) => {
-  const payload = converters.convertToSms(fields);
+export const createQrCodeFromSms = (fields, ...args) => {
+  const payload = convertToSms(fields);
 
   return createQrCode(payload, ...args);
-};
-
-module.exports = {
-  createQrCodeFromUrl,
-  createQrCodeFromText,
-  createQrCodeFromVCard,
-  createQrCodeFromEmail,
-  createQrCodeFromSms
 };

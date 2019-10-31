@@ -1,4 +1,4 @@
-const vCardsJS = require('vcards-js');
+import vCardsJS from 'vcards-js';
 
 const convertToUrl = ({ url }) => url;
 
@@ -45,7 +45,7 @@ const convertToEmail = ({
 
 const convertToSms = ({ tel, message }) => `smsto:${tel}:${message}`;
 
-module.exports = {
+export default {
   convertToUrl,
   convertToText,
   convertToVCard,

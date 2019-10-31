@@ -1,4 +1,4 @@
-const calculateRectDots = (data, size, scale) =>
+export const calculateRectDots = (data, size, scale) =>
   data.reduce((acc, value, index) => {
     if (!value) {
       return acc;
@@ -10,13 +10,8 @@ const calculateRectDots = (data, size, scale) =>
     return [...acc, { x, y }];
   }, []);
 
-const drawRectDots = (ctx, coords, scale) => {
+export const drawRectDots = (ctx, coords, scale) => {
   coords.forEach(({ x, y }) => {
     ctx.fillRect(x, y, scale, scale);
   });
-};
-
-module.exports = {
-  calculateRectDots,
-  drawRectDots
 };
