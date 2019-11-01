@@ -22,7 +22,7 @@ const createQrCodeForText = (fields, opts) => {
 
 const createQrCodeForVCard = (fields, opts) => {
   const payload = converters.convertToVCard(fields);
-console.log(payload)
+
   return createQrCode(payload, opts);
 };
 
