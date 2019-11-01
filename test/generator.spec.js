@@ -1,4 +1,4 @@
-const generator = require('../lib/generator');
+const generator = require('../src/generator');
 
 test('getQRCodeBitMatrix return correct bit matrix', () => {
   const payload = 'text';

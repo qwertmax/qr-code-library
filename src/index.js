@@ -2,46 +2,46 @@ const converters = require('./converters');
 const generator = require('./generator');
 const rerender = require('./rerender');
 
-const createQrCode = (payload, ...args) => {
+const createQrCode = (payload, opts = {}) => {
   const matrix = generator.getQRCodeBitMatrix(payload);
 
-  return rerender(matrix);
+  return rerender(matrix, opts);
 };
 
-const createQrCodeFromUrl = (fields, ...args) => {
+const createQrCodeForUrl = (fields, opts) => {
   const payload = converters.convertToUrl(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-const createQrCodeFromText = (fields, ...args) => {
+const createQrCodeForText = (fields, opts) => {
   const payload = converters.convertToText(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-const createQrCodeFromVCard = (fields, ...args) => {
+const createQrCodeForVCard = (fields, opts) => {
   const payload = converters.convertToVCard(fields);
-
-  return createQrCode(payload, ...args);
+console.log(payload)
+  return createQrCode(payload, opts);
 };
 
-const createQrCodeFromEmail = (fields, ...args) => {
+const createQrCodeForEmail = (fields, opts) => {
   const payload = converters.convertToEmail(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-const createQrCodeFromSms = (fields, ...args) => {
+const createQrCodeForSms = (fields, opts) => {
   const payload = converters.convertToSms(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
 module.exports = {
-  createQrCodeFromUrl,
-  createQrCodeFromText,
-  createQrCodeFromVCard,
-  createQrCodeFromEmail,
-  createQrCodeFromSms
+  createQrCodeForUrl,
+  createQrCodeForText,
+  createQrCodeForVCard,
+  createQrCodeForEmail,
+  createQrCodeForSms
 };
