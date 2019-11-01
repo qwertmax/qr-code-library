@@ -1,44 +1,44 @@
-const converters = require('./converters');
-const generator = require('./generator');
-const rerender = require('./rerender');
+import { convertToUrl, convertToText, convertToVCard, convertToEmail, convertToSms } from './converters';
+import { getQRCodeBitMatrix } from './generator';
+import rerender from './rerender';
 
 const createQrCode = (payload, opts = {}) => {
-  const matrix = generator.getQRCodeBitMatrix(payload);
+  const matrix = getQRCodeBitMatrix(payload);
 
   return rerender(matrix, opts);
 };
 
 const createQrCodeForUrl = (fields, opts) => {
-  const payload = converters.convertToUrl(fields);
+  const payload = convertToUrl(fields);
 
   return createQrCode(payload, opts);
 };
 
 const createQrCodeForText = (fields, opts) => {
-  const payload = converters.convertToText(fields);
+  const payload = convertToText(fields);
 
   return createQrCode(payload, opts);
 };
 
 const createQrCodeForVCard = (fields, opts) => {
-  const payload = converters.convertToVCard(fields);
+  const payload = convertToVCard(fields);
 
   return createQrCode(payload, opts);
 };
 
 const createQrCodeForEmail = (fields, opts) => {
-  const payload = converters.convertToEmail(fields);
+  const payload = convertToEmail(fields);
 
   return createQrCode(payload, opts);
 };
 
 const createQrCodeForSms = (fields, opts) => {
-  const payload = converters.convertToSms(fields);
+  const payload = convertToSms(fields);
 
   return createQrCode(payload, opts);
 };
 
-module.exports = {
+export default {
   createQrCodeForUrl,
   createQrCodeForText,
   createQrCodeForVCard,

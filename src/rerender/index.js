@@ -1,8 +1,7 @@
 import { RENDER_TYPES, DEFAULT_OPTS } from './constants';
 import renderContent from './content/renderContent';
 import renderFinders from './finders/renderFinders';
-
-const getCanvas = require('../utils/getCanvas');
+import getCanvas from '../utils/getCanvas';
 
 const clearFinders = (data, size) =>
   data.map((v, idx) => {
@@ -24,7 +23,7 @@ const clearFinders = (data, size) =>
     return v;
   });
 
-module.exports = (
+export default (
   bitMatrix,
   { type = RENDER_TYPES.RECT_DOTS, content, finders, border }
 ) => {
@@ -41,8 +40,9 @@ module.exports = (
   const ctx = canvas.getContext('2d');
 
   const dataWithoutFinders = clearFinders(data, size);
-  renderContent(ctx, dataWithoutFinders, size, scale, content);
-  renderFinders(ctx, size, scale);
+
+  renderContent(ctx, dataWithoutFinders, size, scale, type, content);
+  renderFinders(ctx, size, scale, type, finders);
 
   return canvas.toDataURL('image/png');
 };
