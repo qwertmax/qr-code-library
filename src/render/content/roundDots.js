@@ -1,4 +1,4 @@
-export const calculateRoundDots = (data, size, scale) => {
+export const calculateRoundDots = (data, size, scale) =>
   data.reduce((acc, value, index) => {
     if (!value) {
       return acc;
@@ -10,7 +10,6 @@ export const calculateRoundDots = (data, size, scale) => {
 
     return [...acc, { x, y, r }];
   }, []);
-};
 
 export const drawRoundDots = (ctx, coords) =>
   coords.forEach(({ x, y, r }) => {

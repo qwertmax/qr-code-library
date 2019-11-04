@@ -6,40 +6,48 @@ import {
   convertToSms
 } from './converters';
 import { getQRCodeBitMatrix } from './generator';
-import render from './render';
+import rerender from './rerender';
 
-export const createQrCode = (payload, ...args) => {
+const createQrCode = (payload, opts = {}) => {
   const matrix = getQRCodeBitMatrix(payload);
 
-  return render(matrix);
+  return rerender(matrix, opts);
 };
 
-export const createQrCodeFromUrl = (fields, ...args) => {
+const createQrCodeForUrl = (fields, opts) => {
   const payload = convertToUrl(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-export const createQrCodeFromText = (fields, ...args) => {
+const createQrCodeForText = (fields, opts) => {
   const payload = convertToText(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-export const createQrCodeFromVCard = (fields, ...args) => {
+const createQrCodeForVCard = (fields, opts) => {
   const payload = convertToVCard(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-export const createQrCodeFromEmail = (fields, ...args) => {
+const createQrCodeForEmail = (fields, opts) => {
   const payload = convertToEmail(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
 };
 
-export const createQrCodeFromSms = (fields, ...args) => {
+const createQrCodeForSms = (fields, opts) => {
   const payload = convertToSms(fields);
 
-  return createQrCode(payload, ...args);
+  return createQrCode(payload, opts);
+};
+
+export default {
+  createQrCodeForUrl,
+  createQrCodeForText,
+  createQrCodeForVCard,
+  createQrCodeForEmail,
+  createQrCodeForSms
 };

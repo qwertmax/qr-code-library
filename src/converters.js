@@ -1,38 +1,45 @@
-import vCardsJS from 'vcards-js';
+const convertToUrl = url => url;
 
-const convertToUrl = ({ url }) => url;
-
-const convertToText = ({ text }) => text;
+const convertToText = text => text;
 
 const convertToVCard = ({
   firstName,
   lastName,
   organization,
   role,
-  cellPhone,
+  phone,
   url,
   email,
-  street,
+  country,
+  state,
   city,
-  postalCode,
-  countryRegion
+  street,
+  zip
 }) => {
-  const vCard = vCardsJS();
+  const vCardFields = [
+    'BEGIN:VCARD',
+    `N:${lastName};${firstName}`,
+    `FN: ${firstName} ${lastName}`,
+    organization ? `ORG:${organization}` : null,
+    phone ? `TEL;TYPE=work,voice:${phone}` : null,
+    `ADR;TYPE=WORK:${[
+      '',
+      '',
+      street || '',
+      city || '',
+      state || '',
+      zip || '',
+      country || ''
+    ].join(';')}`,
+    email ? `EMAIL:${email}` : null,
+    role ? `TITLE: ${role}` : null,
+    url ? `URL:${url}` : null,
+    'END:VCARD\r\n'
+  ]
+    .filter(v => v !== null)
+    .join('\r\n');
 
-  vCard.firstName = firstName;
-  vCard.lastName = lastName;
-  vCard.organization = organization;
-  vCard.role = role;
-  vCard.cellPhone = cellPhone;
-  vCard.url = url;
-  vCard.email = email;
-
-  vCard.homeAddress.street = street;
-  vCard.homeAddress.city = city;
-  vCard.homeAddress.postalCode = postalCode;
-  vCard.homeAddress.countryRegion = countryRegion;
-
-  return vCard.getFormattedString();
+  return vCardFields;
 };
 
 const convertToEmail = ({
@@ -41,7 +48,21 @@ const convertToEmail = ({
   body = '',
   cc = '',
   bcc = ''
-}) => `mailto:${email}?cc=${cc}&bcc=${bcc}&subject=${subject}&body=${body}`;
+}) => {
+  const emailUri = `mailto:${email}`;
+  const query = [
+    cc ? `cc=${cc}` : null,
+    bcc ? `bcc=${bcc}` : null,
+    subject ? `&subject=${subject}` : null,
+    body ? `body=${body}` : null
+  ].filter(v => v !== null);
+
+  if (query.length) {
+    return emailUri.concat('?', query.join('&'));
+  }
+
+  return emailUri;
+};
 
 const convertToSms = ({ tel, message }) => `smsto:${tel}:${message}`;
 
