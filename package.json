@@ -1,5 +1,5 @@
 {
-  "name": "bb-qrcode",
+  "name": "qr-code-library",
   "version": "1.0.0",
   "description": "Create customized qr codes",
   "private": true,
