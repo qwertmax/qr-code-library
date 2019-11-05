@@ -7,9 +7,9 @@ const mapTypeToRenderContentFunctions = {
   [RENDER_TYPES.ROUND_DOTS]: [calculateRoundDots, drawRoundDots]
 };
 
-export default (ctx, data, size, scale, type, options) => {
+export default (ctx, data, size, scale, type, options, offset) => {
   const [calculate, draw] = mapTypeToRenderContentFunctions[type];
-  const coords = calculate(data, size, scale);
+  const coords = calculate(data, size, scale, offset);
 
   draw(ctx, coords, scale, options);
 }

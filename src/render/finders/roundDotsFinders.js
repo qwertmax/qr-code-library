@@ -29,7 +29,7 @@ export const drawRoundDots = (
   outerCoords
 ) => {
   ctx.fillStyle = innerColor;
-  ctx.fillStroke = innerColor;
+  ctx.strokeStyle = innerColor;
   innerCoords.forEach(({ x, y, r }) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
@@ -38,7 +38,7 @@ export const drawRoundDots = (
   });
 
   ctx.fillStyle = outerColor;
-  ctx.fillStroke = outerColor;
+  ctx.strokeStyle = outerColor;
   outerCoords.forEach(({ x, y, r }) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);

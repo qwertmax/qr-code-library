@@ -1,16 +1,17 @@
-export const calculateRectDots = (data, size, scale) =>
+export const calculateRectDots = (data, size, scale, [offsetX, offsetY]) =>
   data.reduce((acc, value, index) => {
     if (!value) {
       return acc;
     }
 
-    const x = (index % size) * scale;
-    const y = Math.floor(index / size) * scale;
+    const x = (index % size) * scale + offsetX;
+    const y = Math.floor(index / size) * scale + offsetY;
 
     return [...acc, { x, y }];
   }, []);
 
-export const drawRectDots = (ctx, coords, scale) => {
+export const drawRectDots = (ctx, coords, scale, options) => {
+  ctx.fillStyle = options.content.color;
   coords.forEach(({ x, y }) => {
     ctx.fillRect(x, y, scale, scale);
   });

@@ -1,11 +1,12 @@
 import { FINDER_TYPES, DEFAULT_FINDER_OPTS } from '../constants';
 import { calculateRectDots, drawRectDots } from './rectDotsFinders';
 import { calculateRoundDots, drawRoundDots } from './roundDotsFinders';
+import { calculateRounds, drawRounds } from './roundFinders';
 
 const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.RECT_DOTS]: [calculateRectDots, drawRectDots],
   [FINDER_TYPES.ROUND_DOTS]: [calculateRoundDots, drawRoundDots],
-  [FINDER_TYPES.ROUND]: [calculateRoundDots, drawRoundDots]
+  [FINDER_TYPES.ROUND]: [calculateRounds, drawRounds]
 };
 
 /*

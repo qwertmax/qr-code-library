@@ -1,4 +1,5 @@
-import { RENDER_TYPES, DEFAULT_OPTS } from './constants';
+import get from 'lodash.get';
+import { DEFAULT_OPTS } from './constants';
 import renderContent from './content/renderContent';
 import renderFinders from './finders/renderFinders';
 import getCanvas from '../utils/getCanvas';
@@ -23,15 +24,24 @@ const clearFinders = (data, size) =>
     return v;
   });
 
-export default (
-  bitMatrix,
-  { type = RENDER_TYPES.RECT_DOTS, content, finders, border }
-) => {
-  const { size, data } = bitMatrix;
-  const scale = DEFAULT_OPTS.scale;
+const getOffset = (margins = 0, paddings = 0) => {
+  const x = margins + paddings;
+  const y = margins + paddings;
 
-  const width = scale * size;
-  const height = scale * size;
+  return [x, y];
+};
+
+export default (bitMatrix, customOptions) => {
+  const options = { ...DEFAULT_OPTS, ...customOptions };
+  const { size, data } = bitMatrix;
+
+  const margins = get(options, 'content.margins', 0);
+  const paddings = get(options, 'border.paddings', 0);
+  const scale = Math.floor((options.width - margins * 2 - paddings * 2) / size);
+  const offset = getOffset(margins, paddings);
+
+  const width = scale * size + paddings * 2 + margins * 2;
+  const height = scale * size + paddings * 2 + margins * 2;
   const canvas = getCanvas();
 
   canvas.width = width;
@@ -41,8 +51,8 @@ export default (
 
   const dataWithoutFinders = clearFinders(data, size);
 
-  renderContent(ctx, dataWithoutFinders, size, scale, type, content);
-  renderFinders(ctx, size, scale, type, finders);
+  renderContent(ctx, dataWithoutFinders, size, scale, type, options, offset);
+  renderFinders(ctx, size, scale, type, options, offset);
 
   return canvas.toDataURL('image/png');
 };
