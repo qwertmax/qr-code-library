@@ -1,0 +1,20 @@
+{
+  "name": "qr-code-library",
+  "version": "1.0.0",
+  "description": "Create customized qr codes",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest ./test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.get": "^4.4.2",
+    "lodash.merge": "^4.6.2",
+    "qrcode": "^1.4.2"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
