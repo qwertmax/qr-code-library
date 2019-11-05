@@ -17,11 +17,11 @@ export const calculateRectDots = (scale, [dx, dy]) =>
 
 export const drawRectDots = (
   ctx,
-  scale,
   innerColor,
   outerColor,
   innerCoords,
-  outerCoords
+  outerCoords,
+  scale
 ) => {
   ctx.fillStyle = innerColor;
   innerCoords.forEach(({ x, y }) => {

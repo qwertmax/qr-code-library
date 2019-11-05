@@ -60,6 +60,6 @@ export default (
       finderStartPoints[name]
     );
 
-    draw(ctx, scale, innerColor, outerColor, innerCoords, outerCoords);
+    draw(ctx, innerColor, outerColor, innerCoords, outerCoords, scale);
   });
 };

@@ -23,7 +23,6 @@ export const calculateRoundDots = (scale, [dx, dy]) =>
 
 export const drawRoundDots = (
   ctx,
-  scale,
   innerColor,
   outerColor,
   innerCoords,
