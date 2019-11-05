@@ -1,6 +1,7 @@
 import get from 'lodash.get';
 import merge from 'lodash.merge';
 import { DEFAULT_OPTS } from './constants';
+import drawImage from './drawImage';
 import renderContent from './content/renderContent';
 import renderFinders from './finders/renderFinders';
 import getCanvas from '../utils/getCanvas';
@@ -56,6 +57,12 @@ export default (bitMatrix, customOptions) => {
 
   renderContent(ctx, dataWithoutFinders, size, scale, options, offset);
   renderFinders(ctx, size, scale, options, offset);
+
+  const image = get(options, 'content.image');
+
+  if (image) {
+    drawImage(ctx, image, size, scale, offset);
+  }
 
   return canvas.toDataURL('image/png');
 };

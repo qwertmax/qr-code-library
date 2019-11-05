@@ -62,7 +62,7 @@ export default (ctx, size, scale, options, offset) => {
       finderStartPoints[name],
       offset
     );
-console.log(name, innerColor, outerColor, options)
+
     draw(ctx, innerColor, outerColor, innerCoords, outerCoords, scale);
   });
 };
