@@ -42,13 +42,7 @@ const convertToVCard = ({
   return vCardFields;
 };
 
-const convertToEmail = ({
-  email,
-  subject = '',
-  body = '',
-  cc = '',
-  bcc = ''
-}) => {
+const convertToEmail = ({ email, subject, body, cc, bcc }) => {
   const emailUri = `mailto:${email}`;
   const query = [
     cc ? `cc=${cc}` : null,
