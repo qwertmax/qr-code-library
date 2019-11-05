@@ -65,10 +65,92 @@ Each creator returns a `base64` representation of a qr-code image.
 
 **createQrCodeForVCard(urlString[, options])**
 
-text - `String|Array` - text to encode.
+text - `Object` - vCard object to encode.
+
+- `firstName` - `String`
+- `lastName` - `String`
+- `organization` - `String`
+- `role` - `String`
+- `phone` - `String`
+- `url` - `String`
+- `email` - `String`
+- `country` - `String`
+- `state` - `String`
+- `city` - `String`
+- `street` - `String`
+- `zip` - `String`
+
+## Options
+
+Options is optional argument.
+
+```js
+{
+  type: 'render content type';
+  content: {...},
+  finder: {...},
+  border: {...} // coming soon...
+}
+```
+
+### Render content types
+
+- 'RECT_DOTS'
+- 'ROUND_DOTS'
+
+### Content customization
+
+Content options provide color, margins, background color and image object (see [Adding image](#Adding-image)).
+
+```js
+options = {
+  content: {
+    color: 'white',
+    background: 'black',
+    margins: 20,
+    image: HTMLImageElement
+  },
+  ...
+}
+```
+
+### Finders customization
+
+You can customize all finders and each separately both.
+
+```js
+options = {
+  ...
+  finders: {
+    type: 'render finder type',
+    innerColor: '#ddd',
+    outerColor: 'red',
+    finder1: {
+      type: 'render finder type',
+      innerColor: '#ddd',
+      outerColor: 'red'
+    },
+    finder2: {
+      type: 'render finder type',
+      innerColor: '#ddd',
+      outerColor: 'red'
+    },
+    finder3: {
+      type: 'render finder type',
+      innerColor: '#ddd',
+      outerColor: 'red'
+    }
+  }
+}
+```
+
+### Render finder types
+
+- 'RECT_DOTS'
+- 'ROUND_DOTS'
+- 'ROUND'
 
 ### Adding image
 
-### Payload customization
-
-### Finders customization
+If you want to add an image, you will use one of these things: CSSImageValue, HTMLImageElement, SVGImageElement, HTMLVideoElement, HTMLCanvasElement, ImageBitmap or OffscreenCanvas.
+[See more](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images)
