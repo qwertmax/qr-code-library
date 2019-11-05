@@ -1,28 +1,34 @@
-import { FINDER_MATRIX } from '../constants';
+import { INNER_FINDER_MATRIX, OUTER_FINDER_MATRIX } from '../constants';
 
-export const calculateRectDots = (size, scale) => {
-  const finderCoords = [[size - 7, 0], [0, 0], [0, size - 7]].reduce(
-    (acc, [dx, dy]) => {
-      const coordsPart = [];
+export const calculateRectDots = (scale, [dx, dy]) =>
+  [INNER_FINDER_MATRIX, OUTER_FINDER_MATRIX].map(matrix => {
+    const coords = [];
 
-      for (let x = 0; x < 7; x++) {
-        for (let y = 0; y < 7; y++) {
-          if (FINDER_MATRIX[y][x]) {
-            coordsPart.push({ x: (x + dx) * scale, y: (y + dy) * scale });
-          }
+    for (let x = 0; x < 7; x++) {
+      for (let y = 0; y < 7; y++) {
+        if (matrix[y][x]) {
+          coords.push({ x: (x + dx) * scale, y: (y + dy) * scale });
         }
       }
+    }
 
-      return acc.concat(coordsPart);
-    },
-    []
-  );
+    return coords;
+  });
 
-  return finderCoords;
-};
-
-export const drawRectDots = (ctx, coords, scale) => {
-  coords.forEach(({ x, y }) => {
+export const drawRectDots = (
+  ctx,
+  scale,
+  innerColor,
+  outerColor,
+  innerCoords,
+  outerCoords
+) => {
+  ctx.fillStyle = innerColor;
+  innerCoords.forEach(({ x, y }) => {
+    ctx.fillRect(x, y, scale, scale);
+  });
+  ctx.fillStyle = outerColor;
+  outerCoords.forEach(({ x, y }) => {
     ctx.fillRect(x, y, scale, scale);
   });
 };

@@ -1,4 +1,4 @@
-import { FINDER_TYPES } from '../constants';
+import { FINDER_TYPES, DEFAULT_FINDER_OPTS } from '../constants';
 import { calculateRectDots, drawRectDots } from './rectDotsFinders';
 import { calculateRoundDots, drawRoundDots } from './roundDotsFinders';
 
@@ -8,6 +8,58 @@ const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.ROUND]: [calculateRoundDots, drawRoundDots]
 };
 
-export default (ctx, size, scale, contentType, options) => {
-  
+/*
+ finders: {
+   type: 'ROUND',
+   outerColor: '',
+   innerColor: '',
+   finder1: {
+    type: 'ROUND',
+    outerColor: '',
+    innerColor: ''
+  },
+  finder2: {
+    type: 'ROUND',
+    outerColor: '',
+    innerColor: ''
+  },
+  finder3: {
+    type: 'ROUND',
+    outerColor: '',
+    innerColor: ''
+  }
+ }
+*/
+const FINDER_1 = 'finder1';
+const FINDER_2 = 'finder2';
+const FINDER_3 = 'finder3';
+
+export default (
+  ctx,
+  size,
+  scale,
+  contentType,
+  options = DEFAULT_FINDER_OPTS
+) => {
+  const finderStartPoints = {
+    [FINDER_1]: [size - 7, 0],
+    [FINDER_2]: [0, 0],
+    [FINDER_3]: [0, size - 7]
+  };
+  [FINDER_1, FINDER_2, FINDER_3].forEach(name => {
+    const type = (options[name] && options[name].type) || options.type;
+    const outerColor =
+      (options[name] && options[name].outerColor) || options.outerColor;
+    const innerColor =
+      (options[name] && options[name].innerColor) || options.innerColor;
+
+    const [calculate, draw] = mapTypeToRenderFinderFunctions[type];
+
+    const [innerCoords, outerCoords] = calculate(
+      scale,
+      finderStartPoints[name]
+    );
+
+    draw(ctx, scale, innerColor, outerColor, innerCoords, outerCoords);
+  });
 };

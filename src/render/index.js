@@ -1,29 +1,48 @@
-import { calculateRectDots, drawRectDots } from './rectDots';
-import { calculateRoundDots, drawRoundDots } from './roundDots';
-import getCanvasContext from '../utils/getCanvasContext';
+import { RENDER_TYPES, DEFAULT_OPTS } from './constants';
+import renderContent from './content/renderContent';
+import renderFinders from './finders/renderFinders';
+import getCanvas from '../utils/getCanvas';
 
-const DEFAULT_OPTS = {
-  scale: 10
-};
+const clearFinders = (data, size) =>
+  data.map((v, idx) => {
+    if (v === 0) {
+      return v;
+    }
 
-const RENDER_TYPES = {
-  RECT_DOTS: 'RECT_DOTS',
-  ROUND_DOTS: 'ROUND_DOTS'
-};
+    const x = idx % size;
+    const y = Math.floor(idx / size);
 
-const mapTypeToRenderFunctions = {
-  [RENDER_TYPES.RECT_DOTS]: [calculateRectDots, drawRectDots],
-  [RENDER_TYPES.ROUND_DOTS]: [calculateRoundDots, drawRoundDots]
-};
+    if (y < 7 && (x < 7 || x >= size - 7)) {
+      return 0;
+    }
 
-export default (bitMatrix, type = RENDER_TYPES.RECT_DOTS) => {
+    if (y >= size - 7 && x < 7) {
+      return 0;
+    }
+
+    return v;
+  });
+
+export default (
+  bitMatrix,
+  { type = RENDER_TYPES.RECT_DOTS, content, finders, border }
+) => {
   const { size, data } = bitMatrix;
   const scale = DEFAULT_OPTS.scale;
+
   const width = scale * size;
   const height = scale * size;
-  const ctx = getCanvasContext(width, height);
-  const [calculate, draw] = mapTypeToRenderFunctions[type];
-  const coords = calculate(data, size, scale);
+  const canvas = getCanvas();
 
-  draw(ctx, coords, scale);
+  canvas.width = width;
+  canvas.height = height;
+
+  const ctx = canvas.getContext('2d');
+
+  const dataWithoutFinders = clearFinders(data, size);
+
+  renderContent(ctx, dataWithoutFinders, size, scale, type, content);
+  renderFinders(ctx, size, scale, type, finders);
+
+  return canvas.toDataURL('image/png');
 };

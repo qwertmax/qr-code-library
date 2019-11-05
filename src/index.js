@@ -6,12 +6,12 @@ import {
   convertToSms
 } from './converters';
 import { getQRCodeBitMatrix } from './generator';
-import rerender from './rerender';
+import render from './render';
 
 const createQrCode = (payload, opts = {}) => {
   const matrix = getQRCodeBitMatrix(payload);
 
-  return rerender(matrix, opts);
+  return render(matrix, opts);
 };
 
 const createQrCodeForUrl = (fields, opts) => {

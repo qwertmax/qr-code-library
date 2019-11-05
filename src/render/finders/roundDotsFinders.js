@@ -1,36 +1,49 @@
-import { FINDER_MATRIX } from '../constants';
+import { OUTER_FINDER_MATRIX, INNER_FINDER_MATRIX } from '../constants';
 
-export const calculateRoundDots = (size, scale) => {
-  const finderCoords = [[size - 7, 0], [0, 0], [0, size - 7]].reduce(
-    (acc, [dx, dy]) => {
-      const coordsPart = [];
+export const calculateRoundDots = (scale, [dx, dy]) =>
+  [INNER_FINDER_MATRIX, OUTER_FINDER_MATRIX].map(matrix => {
+    const coords = [];
 
-      for (let x = 0; x < 7; x++) {
-        for (let y = 0; y < 7; y++) {
-          if (FINDER_MATRIX[y][x]) {
-            const r = scale / 2 - 1;
+    for (let x = 0; x < 7; x++) {
+      for (let y = 0; y < 7; y++) {
+        if (matrix[y][x]) {
+          const r = scale / 2 - 1;
 
-            coordsPart.push({
-              r,
-              x: (x + dx) * scale + r + 1,
-              y: (y + dy) * scale + r + 1
-            });
-          }
+          coords.push({
+            r,
+            x: (x + dx) * scale + r + 1,
+            y: (y + dy) * scale + r + 1
+          });
         }
       }
+    }
 
-      return acc.concat(coordsPart);
-    },
-    []
-  );
+    return coords;
+  });
 
-  return finderCoords;
-};
-
-export const drawRoundDots = (ctx, coords) =>
-  coords.forEach(({ x, y, r }) => {
+export const drawRoundDots = (
+  ctx,
+  scale,
+  innerColor,
+  outerColor,
+  innerCoords,
+  outerCoords
+) => {
+  ctx.fillStyle = innerColor;
+  ctx.fillStroke = innerColor;
+  innerCoords.forEach(({ x, y, r }) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.fill();
     ctx.stroke();
   });
+
+  ctx.fillStyle = outerColor;
+  ctx.fillStroke = outerColor;
+  outerCoords.forEach(({ x, y, r }) => {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+  });
+};

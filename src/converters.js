@@ -1,8 +1,8 @@
-const convertToUrl = url => url;
+export const convertToUrl = url => url;
 
-const convertToText = text => text;
+export const convertToText = text => text;
 
-const convertToVCard = ({
+export const convertToVCard = ({
   firstName,
   lastName,
   organization,
@@ -42,7 +42,7 @@ const convertToVCard = ({
   return vCardFields;
 };
 
-const convertToEmail = ({ email, subject, body, cc, bcc }) => {
+export const convertToEmail = ({ email, subject, body, cc, bcc }) => {
   const emailUri = `mailto:${email}`;
   const query = [
     cc ? `cc=${cc}` : null,
@@ -58,12 +58,4 @@ const convertToEmail = ({ email, subject, body, cc, bcc }) => {
   return emailUri;
 };
 
-const convertToSms = ({ tel, message }) => `smsto:${tel}:${message}`;
-
-export default {
-  convertToUrl,
-  convertToText,
-  convertToVCard,
-  convertToEmail,
-  convertToSms
-};
+export const convertToSms = ({ tel, message }) => `smsto:${tel}:${message}`;
