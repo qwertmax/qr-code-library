@@ -9,5 +9,5 @@ const mapTypeToRenderFinderFunctions = {
 };
 
 export default (ctx, size, scale, contentType, options) => {
-  const 
+  
 };
