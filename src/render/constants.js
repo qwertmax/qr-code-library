@@ -14,16 +14,14 @@ export const DEFAULT_OPTS = {
   type: RENDER_TYPES.RECT_DOTS,
   content: {
     color: 'black',
-    margin: 20
+    margins: 20
   },
   border: {
     size: 0,
     paddings: 0
   },
   finders: {
-    type: FINDER_TYPES.ROUND,
-    innerColor: 'black',
-    outerColor: 'black'
+    type: FINDER_TYPES.RECT_DOTS
   }
 }
 

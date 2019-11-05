@@ -1,4 +1,5 @@
-import { FINDER_TYPES, DEFAULT_FINDER_OPTS } from '../constants';
+import get from 'lodash.get';
+import { FINDER_TYPES } from '../constants';
 import { calculateRectDots, drawRectDots } from './rectDotsFinders';
 import { calculateRoundDots, drawRoundDots } from './roundDotsFinders';
 import { calculateRounds, drawRounds } from './roundFinders';
@@ -35,32 +36,33 @@ const FINDER_1 = 'finder1';
 const FINDER_2 = 'finder2';
 const FINDER_3 = 'finder3';
 
-export default (
-  ctx,
-  size,
-  scale,
-  contentType,
-  options = DEFAULT_FINDER_OPTS
-) => {
+export default (ctx, size, scale, options, offset) => {
   const finderStartPoints = {
     [FINDER_1]: [size - 7, 0],
     [FINDER_2]: [0, 0],
     [FINDER_3]: [0, size - 7]
   };
+  const { finders } = options;
   [FINDER_1, FINDER_2, FINDER_3].forEach(name => {
-    const type = (options[name] && options[name].type) || options.type;
+    const type =
+      get(finders, `${name}.type`) || get(finders, `type`) || options.type;
     const outerColor =
-      (options[name] && options[name].outerColor) || options.outerColor;
+      get(finders, `${name}.outerColor`) ||
+      get(finders, `outerColor`) ||
+      options.content.color;
     const innerColor =
-      (options[name] && options[name].innerColor) || options.innerColor;
+      get(finders, `${name}.innerColor`) ||
+      get(finders, `innerColor`) ||
+      options.content.color;
 
     const [calculate, draw] = mapTypeToRenderFinderFunctions[type];
 
     const [innerCoords, outerCoords] = calculate(
       scale,
-      finderStartPoints[name]
+      finderStartPoints[name],
+      offset
     );
-
+console.log(name, innerColor, outerColor, options)
     draw(ctx, innerColor, outerColor, innerCoords, outerCoords, scale);
   });
 };

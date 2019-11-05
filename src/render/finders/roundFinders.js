@@ -1,8 +1,8 @@
-export const calculateRounds = (scale, [dx, dy], [ offsetX, offsetY ]) => {
+export const calculateRounds = (scale, [dx, dy], [offsetX, offsetY]) => {
   const outerRadius = 3 * scale - 1;
   const innerRadius = 1.5 * scale - 1;
-  const centerX = (3.5 + dx) * scale + 1;
-  const centerY = (3.5 + dy) * scale + 1;
+  const centerX = (3.5 + dx) * scale + 1 + offsetX;
+  const centerY = (3.5 + dy) * scale + 1 + offsetY;
   const outerRadiusWidth = scale;
 
   const innerRound = {

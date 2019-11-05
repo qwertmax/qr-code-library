@@ -1,6 +1,6 @@
 import { OUTER_FINDER_MATRIX, INNER_FINDER_MATRIX } from '../constants';
 
-export const calculateRoundDots = (scale, [dx, dy]) =>
+export const calculateRoundDots = (scale, [dx, dy], [offsetX, offsetY]) =>
   [INNER_FINDER_MATRIX, OUTER_FINDER_MATRIX].map(matrix => {
     const coords = [];
 
@@ -11,8 +11,8 @@ export const calculateRoundDots = (scale, [dx, dy]) =>
 
           coords.push({
             r,
-            x: (x + dx) * scale + r + 1,
-            y: (y + dy) * scale + r + 1
+            x: (x + dx) * scale + r + 1 + offsetX,
+            y: (y + dy) * scale + r + 1 + offsetY
           });
         }
       }

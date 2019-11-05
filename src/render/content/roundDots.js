@@ -1,3 +1,5 @@
+import get from 'lodash.get';
+
 export const calculateRoundDots = (data, size, scale, [offsetX, offsetY]) =>
   data.reduce((acc, value, index) => {
     if (!value) {
@@ -12,7 +14,7 @@ export const calculateRoundDots = (data, size, scale, [offsetX, offsetY]) =>
   }, []);
 
 export const drawRoundDots = (ctx, coords, options) => {
-  ctx.fillStyle = options.content.color;
+  ctx.fillStyle = get(options, 'content.color');
   coords.forEach(({ x, y, r }) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
