@@ -1,5 +1,7 @@
 # qr-code-library
 
+![QR Code library logo](https://i.ibb.co/4sgYMLw/cbimage.png)
+
 ### Installation
 
 Just use this string:
