@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Create customized qr codes",
   "private": true,
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest ./test"
   },
