@@ -15,6 +15,7 @@ export const calculateRoundDots = (data, size, scale, [offsetX, offsetY]) =>
 
 export const drawRoundDots = (ctx, coords, options) => {
   ctx.fillStyle = get(options, 'content.color');
+  ctx.strokeStyle = get(options, 'content.color');
   coords.forEach(({ x, y, r }) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);

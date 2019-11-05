@@ -12,5 +12,5 @@ export default (ctx, data, size, scale, options, offset) => {
   const [calculate, draw] = mapTypeToRenderContentFunctions[type];
   const coords = calculate(data, size, scale, offset);
 
-  draw(ctx, coords, scale, options);
+  draw(ctx, coords, options);
 }

@@ -2,6 +2,7 @@ import get from 'lodash.get';
 import merge from 'lodash.merge';
 import { DEFAULT_OPTS } from './constants';
 import drawImage from './drawImage';
+import drawBackground from './drawBg';
 import renderContent from './content/renderContent';
 import renderFinders from './finders/renderFinders';
 import getCanvas from '../utils/getCanvas';
@@ -54,6 +55,12 @@ export default (bitMatrix, customOptions) => {
   const ctx = canvas.getContext('2d');
 
   const dataWithoutFinders = clearFinders(data, size);
+
+  const backgroundColor = get(options, 'content.background');
+
+  if (backgroundColor) {
+    drawBackground(ctx, width, height, backgroundColor, borderSize);
+  }
 
   renderContent(ctx, dataWithoutFinders, size, scale, options, offset);
   renderFinders(ctx, size, scale, options, offset);
