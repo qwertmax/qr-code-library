@@ -12,7 +12,7 @@ export const calculateRectDots = (data, size, scale, [offsetX, offsetY]) =>
     return [...acc, { x, y }];
   }, []);
 
-export const drawRectDots = (ctx, coords, scale, options) => {
+export const drawRectDots = (ctx, coords, options, scale) => {
   ctx.fillStyle = get(options, 'content.color');
   coords.forEach(({ x, y }) => {
     ctx.fillRect(x, y, scale, scale);
