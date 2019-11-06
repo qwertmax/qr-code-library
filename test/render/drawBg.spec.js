@@ -1,6 +1,6 @@
 import drawBg from '../../src/render/drawBg';
 
-describe('', () => {
+describe('drawBg', () => {
   const canvasCtx = {};
   const width = 100;
   const height = 80;
@@ -11,19 +11,19 @@ describe('', () => {
     canvasCtx.fillRect = jest.fn();
   });
 
-  test('drawBg calls fillRect with correct arguments', () => {
+  it('calls fill rect func with correct arguments', () => {
     drawBg(canvasCtx, width, height, color, borderSize);
 
     expect(canvasCtx.fillRect).toBeCalledWith(10, 10, 80, 60);
   });
 
-  test('drawBg set fill style color', () => {
+  it('set fill style color', () => {
     drawBg(canvasCtx, width, height, color, borderSize);
 
     expect(canvasCtx.fillStyle).toEqual(color);
   });
 
-  test('drawBg calls fillRect with correct argiments when there is no border size', () => {
+  it('calls fill rect func without border size', () => {
     drawBg(canvasCtx, width, height, color, 0);
 
     expect(canvasCtx.fillRect).toBeCalledWith(0, 0, 100, 80);
