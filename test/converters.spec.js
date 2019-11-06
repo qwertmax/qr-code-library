@@ -31,6 +31,7 @@ describe('convertToVCard', () => {
       organization: 'Company',
       role: 'Developer',
       email: 'test@example.com',
+      phone: '+5550000',
       url: 'test.example.com'
     };
 

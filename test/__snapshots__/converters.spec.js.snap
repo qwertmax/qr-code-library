@@ -17,6 +17,7 @@ N:Doe;John
 FN: John Doe
 ORG:Company
 TITLE: Developer
+TEL;TYPE=work,voice:+5550000
 ADR;TYPE=WORK:;;;;;;
 EMAIL:test@example.com
 URL:test.example.com

@@ -10,6 +10,6 @@ test('getQRCodeBitMatrix return correct bit matrix', () => {
 
 test('getQRCodeBitMatrix can work with default options', () => {
   expect(() => {
-    getQRCodeBitMatrix('text', {});
+    getQRCodeBitMatrix('text');
   }).not.toThrow();
 });
