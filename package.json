@@ -5,8 +5,7 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "test": "jest ./test",
-    "build": "parcel build src/index.js"
+    "test": "jest ./test"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +18,6 @@
     "@babel/core": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "babel-jest": "^24.9.0",
-    "jest": "^24.9.0",
-    "parcel-bundler": "^1.12.4"
+    "jest": "^24.9.0"
   }
 }
