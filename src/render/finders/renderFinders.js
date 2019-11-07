@@ -3,11 +3,52 @@ import { FINDER_TYPES } from '../constants';
 import { calculateRectDots, drawRectDots } from './rectDotsFinders';
 import { calculateRoundDots, drawRoundDots } from './roundDotsFinders';
 import { calculateRounds, drawRounds } from './roundFinders';
+import { calculateRoundedRect, drawRoundedRect } from './roundedRectFinders';
+import {
+  calculateRoundedAngle1,
+  drawRoundedAngle1
+} from './roundedAngle1Finder';
+import {
+  calculateRoundedAngle2,
+  drawRoundedAngle2
+} from './roundedAngle2Finder';
+import {
+  calculateRoundedAngle3,
+  drawRoundedAngle3
+} from './roundedAngle3Finder';
+import {
+  calculateTwoRoundedAngles1,
+  drawTwoRoundedAngles1
+} from './twoRoundedAngles1Finder';
+import {
+  calculateTwoRoundedAngles2,
+  drawTwoRoundedAngles2
+} from './twoRoundedAngles2Finder';
+import { calculateRectAngle1, drawRectAngle1 } from './rectAngle1Finder';
+import { calculateRectAngle2, drawRectAngle2 } from './rectAngle2Finder';
+import { calculateRectAngle3, drawRectAngle3 } from './rectAngle3Finder';
+import { calculateRectAngle4, drawRectAngle4 } from './rectAngle4Finder';
 
 const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.RECT_DOTS]: [calculateRectDots, drawRectDots],
   [FINDER_TYPES.ROUND_DOTS]: [calculateRoundDots, drawRoundDots],
-  [FINDER_TYPES.ROUND]: [calculateRounds, drawRounds]
+  [FINDER_TYPES.ROUND]: [calculateRounds, drawRounds],
+  [FINDER_TYPES.ROUNDED_RECT]: [calculateRoundedRect, drawRoundedRect],
+  [FINDER_TYPES.ROUNDED_ANGLE_1]: [calculateRoundedAngle1, drawRoundedAngle1],
+  [FINDER_TYPES.ROUNDED_ANGLE_2]: [calculateRoundedAngle2, drawRoundedAngle2],
+  [FINDER_TYPES.ROUNDED_ANGLE_3]: [calculateRoundedAngle3, drawRoundedAngle3],
+  [FINDER_TYPES.TWO_ROUNDED_ANGLES_1]: [
+    calculateTwoRoundedAngles1,
+    drawTwoRoundedAngles1
+  ],
+  [FINDER_TYPES.TWO_ROUNDED_ANGLES_2]: [
+    calculateTwoRoundedAngles2,
+    drawTwoRoundedAngles2
+  ],
+  [FINDER_TYPES.RECT_ANGLE_1]: [calculateRectAngle1, drawRectAngle1],
+  [FINDER_TYPES.RECT_ANGLE_2]: [calculateRectAngle2, drawRectAngle2],
+  [FINDER_TYPES.RECT_ANGLE_3]: [calculateRectAngle3, drawRectAngle3],
+  [FINDER_TYPES.RECT_ANGLE_4]: [calculateRectAngle4, drawRectAngle4]
 };
 
 /*
