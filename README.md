@@ -1,3 +1,6 @@
+https://github.com/actions/toolkit/workflows/Node+CI/badge.svg
+
+
 # qr-code-library
 
 ![QR Code library logo](https://i.ibb.co/4sgYMLw/cbimage.png)
