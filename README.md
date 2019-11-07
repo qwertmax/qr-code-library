@@ -1,4 +1,4 @@
-![Node CI]([![Actions Status](https://github.com/qwertmax/qr-code-library/workflows/Node+CI/badge.svg)](https://github.com/qwertmax/qr-code-library/actions))
+![Node CI]([![Actions Status](https://github.com/qwertmax/qr-code-library/workflows/library-test/badge.svg)](https://github.com/qwertmax/qr-code-library/actions))
 
 
 # qr-code-library
