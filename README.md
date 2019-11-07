@@ -1,4 +1,4 @@
-https://github.com/actions/toolkit/workflows/Node+CI/badge.svg
+[Node CI](https://github.com/actions/toolkit/workflows/workflow%3A"Node+CI"/badge.svg)
 
 
 # qr-code-library
