@@ -1,4 +1,4 @@
-![Actions Status](https://github.com/qwertmax/qr-code-library/workflows/library-test/badge.svg)
+[![Actions Status](https://github.com/qwertmax/qr-code-library/workflows/library-test/badge.svg)](https://github.com/qwertmax/qr-code-library/actions)
 
 
 # qr-code-library
