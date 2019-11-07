@@ -28,16 +28,20 @@ export const drawRounds = (
   [innerCoords],
   [outerCoords]
 ) => {
-  ctx.beginPath();
-  ctx.strokeStyle = outerColor;
-  ctx.lineWidth = outerCoords.width;
-  ctx.arc(outerCoords.x, outerCoords.y, outerCoords.r, 0, 2 * Math.PI);
-  ctx.stroke();
+  if (outerCoords) {
+    ctx.beginPath();
+    ctx.strokeStyle = outerColor;
+    ctx.lineWidth = outerCoords.width;
+    ctx.arc(outerCoords.x, outerCoords.y, outerCoords.r, 0, 2 * Math.PI);
+    ctx.stroke();
+  }
 
-  ctx.beginPath();
-  ctx.strokeStyle = innerColor;
-  ctx.fillStyle = innerColor;
-  ctx.lineWidth = 1;
-  ctx.arc(innerCoords.x, innerCoords.y, innerCoords.r, 0, 2 * Math.PI);
-  ctx.fill();
+  if (innerCoords) {
+    ctx.beginPath();
+    ctx.strokeStyle = innerColor;
+    ctx.fillStyle = innerColor;
+    ctx.lineWidth = 1;
+    ctx.arc(innerCoords.x, innerCoords.y, innerCoords.r, 0, 2 * Math.PI);
+    ctx.fill();
+  }
 };
