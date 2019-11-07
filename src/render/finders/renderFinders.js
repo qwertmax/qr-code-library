@@ -16,6 +16,14 @@ import {
   calculateRoundedAngle3,
   drawRoundedAngle3
 } from './roundedAngle3Finder';
+import {
+  calculateTwoRoundedAngles1,
+  drawTwoRoundedAngles1
+} from './twoRoundedAngles1Finder';
+import {
+  calculateTwoRoundedAngles2,
+  drawTwoRoundedAngles2
+} from './twoRoundedAngles2Finder';
 
 const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.RECT_DOTS]: [calculateRectDots, drawRectDots],
@@ -24,7 +32,15 @@ const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.ROUNDED_RECT]: [calculateRoundedRect, drawRoundedRect],
   [FINDER_TYPES.ROUNDED_ANGLE_1]: [calculateRoundedAngle1, drawRoundedAngle1],
   [FINDER_TYPES.ROUNDED_ANGLE_2]: [calculateRoundedAngle2, drawRoundedAngle2],
-  [FINDER_TYPES.ROUNDED_ANGLE_3]: [calculateRoundedAngle3, drawRoundedAngle3]
+  [FINDER_TYPES.ROUNDED_ANGLE_3]: [calculateRoundedAngle3, drawRoundedAngle3],
+  [FINDER_TYPES.TWO_ROUNDED_ANGLES_1]: [
+    calculateTwoRoundedAngles1,
+    drawTwoRoundedAngles1
+  ],
+  [FINDER_TYPES.TWO_ROUNDED_ANGLES_2]: [
+    calculateTwoRoundedAngles2,
+    drawTwoRoundedAngles2
+  ]
 };
 
 /*
