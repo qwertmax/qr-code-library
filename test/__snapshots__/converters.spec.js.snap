@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`convertToEmail should return email uri with additional queries 1`] = `"mailto:test@example.com?&subject=Look here! Email subject!&body=Something...&cc=cc@example.com&bcc=bcc@example.com"`;
+
+exports[`convertToVCard should return vCard representation for last name and first name 1`] = `
+"BEGIN:VCARD
+N:Doe;John
+FN: John Doe
+ADR;TYPE=WORK:;;;;;;
+END:VCARD
+"
+`;
+
+exports[`convertToVCard should return vCard representation with additional fields 1`] = `
+"BEGIN:VCARD
+N:Doe;John
+FN: John Doe
+ORG:Company
+TITLE: Developer
+TEL;TYPE=work,voice:+5550000
+ADR;TYPE=WORK:;;;;;;
+EMAIL:test@example.com
+URL:test.example.com
+END:VCARD
+"
+`;
+
+exports[`convertToVCard should return vCard representation with address 1`] = `
+"BEGIN:VCARD
+N:Doe;John
+FN: John Doe
+ADR;TYPE=WORK:;;123 Main Street;Any Town;CA;91921-1234;USA
+END:VCARD
+"
+`;
