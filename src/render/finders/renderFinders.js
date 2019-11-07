@@ -3,11 +3,28 @@ import { FINDER_TYPES } from '../constants';
 import { calculateRectDots, drawRectDots } from './rectDotsFinders';
 import { calculateRoundDots, drawRoundDots } from './roundDotsFinders';
 import { calculateRounds, drawRounds } from './roundFinders';
+import { calculateRoundedRect, drawRoundedRect } from './roundedRectFinders';
+import {
+  calculateRoundedAngle1,
+  drawRoundedAngle1
+} from './roundedAngle1Finder';
+import {
+  calculateRoundedAngle2,
+  drawRoundedAngle2
+} from './roundedAngle2Finder';
+import {
+  calculateRoundedAngle3,
+  drawRoundedAngle3
+} from './roundedAngle3Finder';
 
 const mapTypeToRenderFinderFunctions = {
   [FINDER_TYPES.RECT_DOTS]: [calculateRectDots, drawRectDots],
   [FINDER_TYPES.ROUND_DOTS]: [calculateRoundDots, drawRoundDots],
-  [FINDER_TYPES.ROUND]: [calculateRounds, drawRounds]
+  [FINDER_TYPES.ROUND]: [calculateRounds, drawRounds],
+  [FINDER_TYPES.ROUNDED_RECT]: [calculateRoundedRect, drawRoundedRect],
+  [FINDER_TYPES.ROUNDED_ANGLE_1]: [calculateRoundedAngle1, drawRoundedAngle1],
+  [FINDER_TYPES.ROUNDED_ANGLE_2]: [calculateRoundedAngle2, drawRoundedAngle2],
+  [FINDER_TYPES.ROUNDED_ANGLE_3]: [calculateRoundedAngle3, drawRoundedAngle3]
 };
 
 /*
